@@ -6,8 +6,7 @@ let
     rev = "5df5d9a3bab3a427ef626daa0279e6ee81690ac7";
     sha256 = "FReoXC0bbrljjWwUy7Ie8Uz5VJdxz9oCFQhWtTxu4w=";
   };
-in
-{
+in {
   home = {
     username = "nixos";
     homeDirectory = "/home/nixos";

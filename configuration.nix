@@ -1,3 +1,5 @@
+# https://github.com/F4NT0/FantoDocs_Rice
+
 # ============================================================================================
 #
 # ███╗   ██╗██╗██╗  ██╗ ██████╗ ███████╗     ██████╗ ██████╗ ███╗   ██╗███████╗██╗ ██████╗
@@ -16,10 +18,9 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # --------------------------
   # BOOTLOADER CONFIGURATIONS
@@ -32,10 +33,10 @@
         efiSysMountPoint = "/boot/";
       };
       grub = {
-	enable = true;
+        enable = true;
 
         efiSupport = true;
-	efiInstallAsRemovable = true;
+        efiInstallAsRemovable = true;
         device = "nodev";
       };
     };
@@ -90,9 +91,7 @@
   # ------------------------
 
   # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "fr";
-  };
+  services.xserver.xkb = { layout = "fr"; };
 
   # Configure console keymap
   console.keyMap = "fr";
@@ -127,14 +126,7 @@
     description = "nixos";
     shell = pkgs.zsh;
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      firefox
-      htop
-      keepassxc
-      neofetch
-      python3
-      tree
-    ];
+    packages = with pkgs; [ firefox htop keepassxc neofetch python3 tree ];
   };
 
   # Enable automatic login for the user.
@@ -152,13 +144,13 @@
   # ------------------------------
 
   environment.systemPackages = with pkgs; [
-      gcc
-      git
-      gnumake
-      networkmanagerapplet
-      wayland
-      wl-clipboard
-      zsh
+    gcc
+    git
+    gnumake
+    networkmanagerapplet
+    wayland
+    wl-clipboard
+    zsh
   ];
 
   # -------------------
@@ -166,10 +158,8 @@
   # -------------------
 
   fonts = {
-     packages = with pkgs; [
-       (nerdfonts.override { fonts = [ "FiraCode"]; })
-     ];
-   };
+    packages = with pkgs; [ (nerdfonts.override { fonts = [ "FiraCode" ]; }) ];
+  };
 
   # ---------------------
   # PORTAL CONFIGURATION
@@ -177,6 +167,15 @@
 
   # xdg.portal.enable = true;
   # xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+
+  # -----------------------
+  # HYPRLAND CONFIGURATION
+  # -----------------------
+
+  # programs.hyprland = {
+  # enable = true;
+  # xwayland.enable = true;
+  # };
 
   # -----------------------
   # SWAY CONFIGURATION
@@ -209,16 +208,14 @@
   # HARDWARE CONFIGURATIONS
   # ------------------------
 
-  hardware = {
-    opengl.enable = true;
-  };
+  hardware = { opengl.enable = true; };
 
   # ------------------------
   # SERVICES CONFIGURATIONS
   # ------------------------
 
   services.nscd.enable = false;
-  system.nssModules = lib.mkForce [];
+  system.nssModules = lib.mkForce [ ];
 
   # ------------------------
   # EXPERIMENTAL FEATURES

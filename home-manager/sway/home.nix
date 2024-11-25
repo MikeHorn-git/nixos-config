@@ -7,9 +7,8 @@ let
     rev = "sway";
     hash = "sha256-/48gXpb4rr8uJLwlSoACkhnUlBSeaTm5B8p20dDNiSE=";
   };
-in
 
-{
+in {
   home = {
     username = "nixos";
     homeDirectory = "/home/nixos";
