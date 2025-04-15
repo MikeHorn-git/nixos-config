@@ -15,10 +15,16 @@
 # IMPORTS AND VARIABLES
 # ---------------------
 
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
@@ -91,7 +97,9 @@
   # ------------------------
 
   # Configure keymap in X11
-  services.xserver.xkb = { layout = "fr"; };
+  services.xserver.xkb = {
+    layout = "fr";
+  };
 
   # Configure console keymap
   console.keyMap = "fr";
@@ -125,8 +133,18 @@
     isNormalUser = true;
     description = "nixos";
     shell = pkgs.zsh;
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [ firefox htop keepassxc neofetch python3 tree ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    packages = with pkgs; [
+      firefox
+      htop
+      keepassxc
+      neofetch
+      python3
+      tree
+    ];
   };
 
   # Enable automatic login for the user.
@@ -208,7 +226,9 @@
   # HARDWARE CONFIGURATIONS
   # ------------------------
 
-  hardware = { opengl.enable = true; };
+  hardware = {
+    opengl.enable = true;
+  };
 
   # ------------------------
   # SERVICES CONFIGURATIONS
@@ -223,8 +243,9 @@
 
   nix = {
     package = pkgs.nixFlakes;
-    extraOptions = lib.optionalString (config.nix.package == pkgs.nixFlakes)
-      "experimental-features = nix-command flakes";
+    extraOptions = lib.optionalString (
+      config.nix.package == pkgs.nixFlakes
+    ) "experimental-features = nix-command flakes";
   };
 
   # -------------------------------
